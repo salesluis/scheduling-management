@@ -1,0 +1,28 @@
+namespace SchedulingManagement.Entities;
+public class Client : TenantEntity
+{
+    public Guid? UserId { get; private set; }
+
+    public string Name { get; private set; } = null!;
+
+    public string? PhoneNumber { get; private set; }
+
+    public Establishment Establishment { get; private set; } = null!;
+
+    public User? User { get; private set; }
+
+    public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
+
+    private Client()
+    {
+    }
+
+    public Client(Guid establishmentId, string name, string? phoneNumber = null, Guid? userId = null)
+    {
+        EstablishmentId = establishmentId;
+        Name = name;
+        PhoneNumber = phoneNumber;
+        UserId = userId;
+    }
+}
+
