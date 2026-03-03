@@ -1,10 +1,12 @@
+using scheduling_management.Entities;
+
 namespace SchedulingManagement.Entities;
 
 public class Establishment : BaseEntity
 {
-    public string Name { get; private set; } = null!;
+    public string Name { get; private set; } 
 
-    public string Slug { get; private set; } = null!;
+    public string Slug { get; private set; }
 
     public string TimeZoneId { get; private set; } = "UTC";
 
@@ -17,10 +19,7 @@ public class Establishment : BaseEntity
     public ICollection<Client> Clients { get; private set; } = new List<Client>();
 
     public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
-
-    private Establishment()
-    {
-    }
+    
 
     public Establishment(string name, string slug, string timeZoneId)
     {

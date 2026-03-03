@@ -21,11 +21,7 @@ public class Appointment : TenantEntity
     public Service Service { get; private set; } = null!;
 
     public Client Client { get; private set; } = null!;
-
-    private Appointment()
-    {
-    }
-
+    
     public Appointment(
         Guid establishmentId,
         Guid professionalId,
@@ -50,9 +46,7 @@ public class Appointment : TenantEntity
     public void Cancel()
     {
         if (Status == AppointmentStatus.Completed)
-        {
             throw new InvalidOperationException("Cannot cancel a completed appointment.");
-        }
 
         Status = AppointmentStatus.Cancelled;
     }
@@ -60,9 +54,7 @@ public class Appointment : TenantEntity
     public void Complete()
     {
         if (Status != AppointmentStatus.Scheduled)
-        {
             throw new InvalidOperationException("Only scheduled appointments can be completed.");
-        }
 
         Status = AppointmentStatus.Completed;
         Touch();

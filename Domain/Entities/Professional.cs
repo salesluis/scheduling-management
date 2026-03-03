@@ -1,3 +1,5 @@
+using scheduling_management.Domain.Entities;
+
 namespace SchedulingManagement.Entities;
 public class Professional : TenantEntity
 {

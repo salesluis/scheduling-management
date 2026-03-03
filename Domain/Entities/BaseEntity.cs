@@ -1,4 +1,4 @@
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Entities;
 
 public abstract class BaseEntity
 {
@@ -8,9 +8,7 @@ public abstract class BaseEntity
 
     public DateOnly UpdatedAtUtc { get; protected set; } = DateOnly.FromDateTime(DateTime.UtcNow);
 
-    public void Touch()
-    {
-        UpdatedAtUtc = DateOnly.FromDateTime(DateTime.UtcNow);
-    }
+    public void Touch() 
+        => UpdatedAtUtc = DateOnly.FromDateTime(DateTime.UtcNow);
 }
 
