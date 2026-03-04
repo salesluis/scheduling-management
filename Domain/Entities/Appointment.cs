@@ -1,47 +1,24 @@
+using scheduling_management.Domain.Abstractions;
 using SchedulingManagement.Enums;
 
 namespace scheduling_management.Domain.Entities;
 
 public class Appointment : TenantEntity
 {
-    public Guid ProfessionalId { get; private set; }
+    public Guid ProfessionalId { get; set; }
+    public Guid ServiceId { get; set; }
+    public Guid ClientId { get; set; }
 
-    public Guid ServiceId { get; private set; }
-
-    public Guid ClientId { get; private set; }
-
-    public DateTime StartUtc { get; private set; }
-
-    public DateTime EndUtc { get; private set; }
+    public DateOnly SchedulingDateOnly { get; set; }
+    public TimeOnly StartHours { get; set; } 
+    public TimeOnly EndHours { get; set; } 
 
     public AppointmentStatus Status { get; private set; } = AppointmentStatus.Scheduled;
 
     public Professional Professional { get; private set; } = null!;
-
     public Service Service { get; private set; } = null!;
-
-    public Client Client { get; private set; } = null!;
+    public Client Client { get; private set; }= null!;
     
-    public Appointment(
-        Guid establishmentId,
-        Guid professionalId,
-        Guid serviceId,
-        Guid clientId,
-        DateTime startUtc,
-        DateTime endUtc)
-    {
-        if (endUtc <= startUtc)
-        {
-            throw new ArgumentException("End time must be after start time.", nameof(endUtc));
-        }
-
-        EstablishmentId = establishmentId;
-        ProfessionalId = professionalId;
-        ServiceId = serviceId;
-        ClientId = clientId;
-        StartUtc = startUtc;
-        EndUtc = endUtc;
-    }
 
     public void Cancel()
     {

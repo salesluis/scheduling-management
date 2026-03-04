@@ -1,3 +1,5 @@
+using scheduling_management.Domain.Abstractions;
+
 namespace scheduling_management.Domain.Entities;
 public class ProfessionalService : TenantEntity
 {
