@@ -1,4 +1,4 @@
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Domain.Entities;
 public class ProfessionalService : TenantEntity
 {
     public Guid ProfessionalId { get; private set; }

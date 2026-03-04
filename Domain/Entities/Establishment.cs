@@ -1,6 +1,4 @@
-using scheduling_management.Entities;
-
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Domain.Entities;
 
 public class Establishment : BaseEntity
 {

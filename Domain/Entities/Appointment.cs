@@ -1,6 +1,6 @@
 using SchedulingManagement.Enums;
 
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Domain.Entities;
 
 public class Appointment : TenantEntity
 {

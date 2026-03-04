@@ -1,8 +1,5 @@
-using System.ComponentModel.DataAnnotations;
-using scheduling_management.Entities;
-using SchedulingManagement.Entities;
-
 namespace scheduling_management.Domain.Entities;
+
 public class User : BaseEntity
 {
     public string Name { get; private set; }

@@ -1,4 +1,4 @@
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Domain.Entities;
 public class Service : TenantEntity
 {
     public string Name { get; private set; } = null!;

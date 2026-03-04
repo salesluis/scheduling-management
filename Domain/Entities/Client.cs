@@ -1,6 +1,4 @@
-using scheduling_management.Domain.Entities;
-
-namespace SchedulingManagement.Entities;
+namespace scheduling_management.Domain.Entities;
 public class Client : TenantEntity
 {
     public Guid? UserId { get; private set; }

@@ -1,4 +1,4 @@
-namespace scheduling_management.Entities;
+namespace scheduling_management.Domain.Entities;
 
 public abstract class BaseEntity
 {
