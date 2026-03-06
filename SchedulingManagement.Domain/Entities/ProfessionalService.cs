@@ -11,9 +11,6 @@ public class ProfessionalService : TenantEntity
 
     public Service Service { get; private set; } = null!;
 
-    private ProfessionalService()
-    {
-    }
 
     public ProfessionalService(Guid establishmentId, Guid professionalId, Guid serviceId)
     {

@@ -12,6 +12,7 @@
     <Folder Include="Aplication\DTOs\" />
     <Folder Include="Infra\Data\Mappings\" />
     <Folder Include="Infra\Repositories\" />
+    <Folder Include="src\" />
   </ItemGroup>
 
   <ItemGroup>

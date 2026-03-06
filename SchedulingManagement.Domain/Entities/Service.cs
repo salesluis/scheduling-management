@@ -17,10 +17,6 @@ public class Service : TenantEntity
 
     public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
 
-    private Service()
-    {
-    }
-
     public Service(Guid establishmentId, string name, int durationInMinutes, decimal? price = null)
     {
         EstablishmentId = establishmentId;

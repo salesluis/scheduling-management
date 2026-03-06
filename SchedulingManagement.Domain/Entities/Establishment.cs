@@ -8,8 +8,6 @@ public class Establishment : BaseEntity
 
     public string Slug { get; private set; }
 
-    public string TimeZoneId { get; private set; } = "UTC";
-
     public bool IsActive { get; private set; } = true;
 
     public ICollection<Service> Services { get; private set; } = new List<Service>();
@@ -25,7 +23,6 @@ public class Establishment : BaseEntity
     {
         Name = name;
         Slug = slug;
-        TimeZoneId = timeZoneId;
     }
 }
 
