@@ -1,4 +1,6 @@
-namespace SchedulingManagement.Entities;
+using scheduling_management.Domain.Abstractions;
+
+namespace scheduling_management.Domain.Entities;
 public class Client : TenantEntity
 {
     public Guid? UserId { get; private set; }

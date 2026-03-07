@@ -1,6 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using scheduling_management.Aplication.Services.Token;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddScoped<TokenService>();
+
+var app = builder.Build();
+app.MapControllers();
 
 app.Run();
