@@ -8,16 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aplication\Contracts\" />
-    <Folder Include="Aplication\DTOs\" />
-    <Folder Include="Infra\Data\Mappings\" />
-    <Folder Include="Infra\Repositories\" />
-    <Folder Include="src\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Domain\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.3.9" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
   </ItemGroup>
 
 </Project>

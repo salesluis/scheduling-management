@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="SchedulingManagement.Aplication/SchedulingManagement.Aplication.csproj" />
-  <Project Path="SchedulingManagement.Domain\SchedulingManagement.Domain.csproj" />
-  <Project Path="SchedulingManagement.Infra/SchedulingManagement.Infra.csproj" />
-</Solution>

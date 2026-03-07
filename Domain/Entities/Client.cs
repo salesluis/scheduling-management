@@ -11,8 +11,6 @@ public class Client : TenantEntity
 
     public Establishment Establishment { get; private set; } = null!;
 
-    public User? User { get; private set; }
-
     public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
 
     private Client()

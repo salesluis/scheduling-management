@@ -18,6 +18,7 @@ public class Appointment : TenantEntity
     public Professional Professional { get; private set; } = null!;
     public Service Service { get; private set; } = null!;
     public Client Client { get; private set; }= null!;
+    public Establishment Establishment { get; set; } = null!;
     
 
     public void Cancel()

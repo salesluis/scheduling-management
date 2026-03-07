@@ -7,7 +7,7 @@ public class Service : TenantEntity
 
     public int DurationInMinutes { get; private set; }
 
-    public decimal? Price { get; private set; }
+    public int PriceInCentavos { get; private set; }
 
     public bool IsActive { get; private set; } = true;
 
@@ -17,12 +17,12 @@ public class Service : TenantEntity
 
     public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
 
-    public Service(Guid establishmentId, string name, int durationInMinutes, decimal? price = null)
+    public Service(Guid establishmentId, string name, int durationInMinutes, int price)
     {
         EstablishmentId = establishmentId;
         Name = name;
         DurationInMinutes = durationInMinutes;
-        Price = price;
+        PriceInCentavos = price;
     }
 }
 
