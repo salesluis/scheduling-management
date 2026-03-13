@@ -5,10 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>scheduling_management</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Domain\" />
   </ItemGroup>
 

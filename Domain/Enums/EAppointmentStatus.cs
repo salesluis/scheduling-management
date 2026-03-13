@@ -1,6 +1,6 @@
 namespace SchedulingManagement.Enums;
 
-public enum AppointmentStatus
+public enum EAppointmentStatus
 {
     Scheduled = 1,
     Completed = 2,

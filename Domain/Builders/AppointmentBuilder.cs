@@ -1,14 +1,15 @@
+using System;
 using scheduling_management.Domain.Entities;
 
 namespace scheduling_management.Domain.Builders;
 
 public class AppointmentBuilder
 {
-    private readonly Appointment _appointment = new();
+    private readonly Appointment _appointment;
 
-    public AppointmentBuilder WithEstablishmentId(Guid id)
+    public AppointmentBuilder WithEstabilishmentId(Guid estabilishmentId)
     {
-        _appointment.EstablishmentId = id;
+        _appointment.ProfessionalId = estabilishmentId;
         return this;
     }
     

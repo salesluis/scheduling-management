@@ -12,22 +12,41 @@ public class ClientMapping : IEntityTypeConfiguration<Client>
 
         builder.HasKey(c => c.Id);
 
+        builder.Property(c => c.Id)
+            .HasColumnName("Id")
+            .HasColumnType("uniqueidentifier");
+
         builder.Property(c => c.Name)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("Name")
+            .HasColumnType("nvarchar");
 
         builder.Property(c => c.PhoneNumber)
-            .HasMaxLength(12);
+            .HasMaxLength(12)
+            .HasColumnName("PhoneNumber")
+            .HasColumnType("nvarchar");
+
+        builder.Property(c => c.EstablishmentId)
+            .HasColumnName("EstablishmentId")
+            .HasColumnType("uniqueidentifier");
+
+        builder.Property(c => c.UserId)
+            .HasColumnName("UserId")
+            .HasColumnType("uniqueidentifier");
 
         builder.Property(c => c.CreatedAtUtc)
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnName("CreatedAtUtc")
+            .HasColumnType("datetime2");
 
         builder.Property(c => c.UpdatedAtUtc)
-            .HasColumnType("datetime");
-        
+            .HasColumnName("UpdatedAtUtc")
+            .HasColumnType("datetime2");
+
         builder.HasIndex(c => new { c.EstablishmentId, c.UserId })
-            .IsUnique();
+            .IsUnique()
+            .HasDatabaseName("IX_Clients_EstablishmentId_UserId");
 
         builder.HasOne(c => c.Establishment)
             .WithMany(e => e.Clients)
@@ -40,4 +59,3 @@ public class ClientMapping : IEntityTypeConfiguration<Client>
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
-
