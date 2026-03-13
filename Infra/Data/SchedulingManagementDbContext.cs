@@ -10,13 +10,13 @@ public class SchedulingManagementDbContext : DbContext
     {
     }
 
-    public DbSet<Establishment> Establishments => Set<Establishment>();
-    public DbSet<User> Users => Set<User>();
-    public DbSet<Client> Clients => Set<Client>();
-    public DbSet<Professional> Professionals => Set<Professional>();
-    public DbSet<Service> Services => Set<Service>();
-    public DbSet<ProfessionalService> ProfessionalServices => Set<ProfessionalService>();
-    public DbSet<Appointment> Appointments => Set<Appointment>();
+    public DbSet<Establishment> Establishments { get; set; }    
+    public DbSet<User> Users { get; set; }
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Professional> Professionals { get; set; }
+    public DbSet<Service> Services { get; set; }
+    public DbSet<ProfessionalService> ProfessionalServices { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

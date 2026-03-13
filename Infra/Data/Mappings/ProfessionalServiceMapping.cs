@@ -12,13 +12,34 @@ public class ProfessionalServiceMapping : IEntityTypeConfiguration<ProfessionalS
 
         builder.HasKey(ps => ps.Id);
 
-        builder.Property(ps => ps.CreatedAtUtc)
-            .IsRequired();
+        builder.Property(ps => ps.Id)
+            .HasColumnName("Id")
+            .HasColumnType("uniqueidentifier");
 
-        builder.Property(ps => ps.UpdatedAtUtc);
+        builder.Property(ps => ps.EstablishmentId)
+            .HasColumnName("EstablishmentId")
+            .HasColumnType("uniqueidentifier");
+
+        builder.Property(ps => ps.ProfessionalId)
+            .HasColumnName("ProfessionalId")
+            .HasColumnType("uniqueidentifier");
+
+        builder.Property(ps => ps.ServiceId)
+            .HasColumnName("ServiceId")
+            .HasColumnType("uniqueidentifier");
+
+        builder.Property(ps => ps.CreatedAtUtc)
+            .IsRequired()
+            .HasColumnName("CreatedAtUtc")
+            .HasColumnType("datetime2");
+
+        builder.Property(ps => ps.UpdatedAtUtc)
+            .HasColumnName("UpdatedAtUtc")
+            .HasColumnType("datetime2");
 
         builder.HasIndex(ps => new { ps.EstablishmentId, ps.ProfessionalId, ps.ServiceId })
-            .IsUnique();
+            .IsUnique()
+            .HasDatabaseName("IX_ProfessionalServices_EstablishmentId_ProfessionalId_ServiceId");
 
         builder.HasOne(ps => ps.Professional)
             .WithMany(p => p.ProfessionalServices)
@@ -31,4 +52,3 @@ public class ProfessionalServiceMapping : IEntityTypeConfiguration<ProfessionalS
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
-

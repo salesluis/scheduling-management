@@ -12,24 +12,37 @@ public class UserMapping : IEntityTypeConfiguration<User>
 
         builder.HasKey(u => u.Id);
 
+        builder.Property(u => u.Id)
+            .HasColumnName("Id")
+            .HasColumnType("uniqueidentifier");
+
         builder.Property(u => u.Name)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("Name")
+            .HasColumnType("nvarchar");
 
         builder.Property(u => u.Email)
             .IsRequired()
-            .HasMaxLength(256);
+            .HasMaxLength(256)
+            .HasColumnName("Email")
+            .HasColumnType("nvarchar");
 
         builder.Property(u => u.PhoneNumber)
-            .HasMaxLength(30);
+            .HasMaxLength(30)
+            .HasColumnName("PhoneNumber")
+            .HasColumnType("nvarchar");
 
         builder.HasIndex(u => u.Email)
-            .IsUnique();
+            .IsUnique()
+            .HasDatabaseName("IX_Users_Email");
 
-        builder.Property(u => u.CreatedAtUtc);
+        builder.Property(u => u.CreatedAtUtc)
+            .HasColumnName("CreatedAtUtc")
+            .HasColumnType("datetime2");
 
-        builder.Property(u => u.UpdatedAtUtc);
-        
+        builder.Property(u => u.UpdatedAtUtc)
+            .HasColumnName("UpdatedAtUtc")
+            .HasColumnType("datetime2");
     }
 }
-

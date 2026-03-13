@@ -12,27 +12,48 @@ public class ServiceMapping : IEntityTypeConfiguration<Service>
 
         builder.HasKey(s => s.Id);
 
+        builder.Property(s => s.Id)
+            .HasColumnName("Id")
+            .HasColumnType("uniqueidentifier");
+
         builder.Property(s => s.Name)
             .IsRequired()
-            .HasMaxLength(200);
+            .HasMaxLength(200)
+            .HasColumnName("Name")
+            .HasColumnType("nvarchar");
 
         builder.Property(s => s.DurationInMinutes)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnName("DurationInMinutes")
+            .HasColumnType("int");
 
-        builder.Property(s => s.PriceInCentavos)
-            .IsRequired();
+        builder.Property(s => s.PriceInReal)
+            .IsRequired()
+            .HasColumnName("PriceInReal")
+            .HasColumnType("int");
 
         builder.Property(s => s.IsActive)
             .IsRequired()
-            .HasDefaultValue(true);
+            .HasDefaultValue(true)
+            .HasColumnName("IsActive")
+            .HasColumnType("bit");
+
+        builder.Property(s => s.EstablishmentId)
+            .HasColumnName("EstablishmentId")
+            .HasColumnType("uniqueidentifier");
 
         builder.Property(s => s.CreatedAtUtc)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnName("CreatedAtUtc")
+            .HasColumnType("datetime2");
 
-        builder.Property(s => s.UpdatedAtUtc);
+        builder.Property(s => s.UpdatedAtUtc)
+            .HasColumnName("UpdatedAtUtc")
+            .HasColumnType("datetime2");
 
         builder.HasIndex(s => new { s.EstablishmentId, s.Name })
-            .IsUnique();
+            .IsUnique()
+            .HasDatabaseName("IX_Services_EstablishmentId_Name");
 
         builder.HasOne(s => s.Establishment)
             .WithMany(e => e.Services)
@@ -50,4 +71,3 @@ public class ServiceMapping : IEntityTypeConfiguration<Service>
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
-

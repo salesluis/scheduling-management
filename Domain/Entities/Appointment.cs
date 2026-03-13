@@ -1,3 +1,4 @@
+using System;
 using scheduling_management.Domain.Abstractions;
 using SchedulingManagement.Enums;
 
@@ -12,9 +13,10 @@ public class Appointment : TenantEntity
     public DateOnly SchedulingDateOnly { get; set; }
     public TimeOnly StartHours { get; set; } 
     public TimeOnly EndHours { get; set; } 
-
-    public AppointmentStatus Status { get; private set; } = AppointmentStatus.Scheduled;
-
+    public EAppointmentStatus Status { get; private set; } = EAppointmentStatus.Scheduled;
+    public int TotalClients { get; private set; } = 0;
+    
+    
     public Professional Professional { get; private set; } = null!;
     public Service Service { get; private set; } = null!;
     public Client Client { get; private set; }= null!;
@@ -23,18 +25,18 @@ public class Appointment : TenantEntity
 
     public void Cancel()
     {
-        if (Status == AppointmentStatus.Completed)
+        if (Status == EAppointmentStatus.Completed)
             throw new InvalidOperationException("Cannot cancel a completed appointment.");
 
-        Status = AppointmentStatus.Cancelled;
+        Status = EAppointmentStatus.Cancelled;
     }
 
     public void Complete()
     {
-        if (Status != AppointmentStatus.Scheduled)
+        if (Status != EAppointmentStatus.Scheduled)
             throw new InvalidOperationException("Only scheduled appointments can be completed.");
 
-        Status = AppointmentStatus.Completed;
+        Status = EAppointmentStatus.Completed;
         Touch();
     }
 }
