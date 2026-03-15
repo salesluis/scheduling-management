@@ -13,7 +13,7 @@ public class ClientService : IClientService
         _repository = repository;
     }
 
-    public async Task<ClientDto> CreateAsync(CreateClientDto request, CancellationToken cancellationToken = default)
+    public async Task<ResponseClientDto> CreateAsync(CreateClientDto request, CancellationToken cancellationToken = default)
     {
         var entity = new Client(request.EstablishmentId, request.Name.Trim(), request.PhoneNumber?.Trim());
         var created = await _repository.CreateAsync(entity, cancellationToken);
@@ -37,26 +37,26 @@ public class ClientService : IClientService
         return true;
     }
 
-    public async Task<ClientDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<ResponseClientDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await _repository.GetByIdAsync(id, cancellationToken);
         return entity == null ? null : MapToDto(entity);
     }
 
-    public async Task<PagedResponse<ClientDto>> ListAsync(int page, int pageSize, Guid? establishmentId = null, CancellationToken cancellationToken = default)
+    public async Task<PagedResponse<ResponseClientDto>> ListAsync(int page, int pageSize, Guid? establishmentId = null, CancellationToken cancellationToken = default)
     {
         var paged = await _repository.GetPagedAsync(page, pageSize, establishmentId, cancellationToken);
         var items = paged.Items.Select(MapToDto).ToList();
-        return new PagedResponse<ClientDto>(items, page, pageSize, paged.TotalCount);
+        return new PagedResponse<ResponseClientDto>(items, page, pageSize, paged.TotalCount);
     }
 
-    public async Task<IReadOnlyList<ClientDto>> SearchAsync(Guid? establishmentId, string? name, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<ResponseClientDto>> SearchAsync(Guid? establishmentId, string? name, CancellationToken cancellationToken = default)
     {
         var items = await _repository.SearchAsync(establishmentId, name, cancellationToken);
         return items.Select(MapToDto).ToList();
     }
 
-    private static ClientDto MapToDto(Client c) => new(
+    private static ResponseClientDto MapToDto(Client c) => new(
         c.Id,
         c.EstablishmentId,
         c.UserId,

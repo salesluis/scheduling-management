@@ -13,7 +13,7 @@ public record UpdateClientDto(
     string? PhoneNumber = null);
 
 /// <summary>Cliente retornado na API (get/list/search).</summary>
-public record ClientDto(
+public record ResponseClientDto(
     Guid Id,
     Guid EstablishmentId,
     Guid? UserId,
