@@ -1,7 +1,8 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using scheduling_management.Application.Services;
-using scheduling_management.Application.Services.Appointment;
+using scheduling_management.Application.Services.SAppointment;
+using scheduling_management.Domain.Contracts;
 using scheduling_management.Http.Filters;
 using scheduling_management.Infra.Data;
 using scheduling_management.Infra.Repositories;

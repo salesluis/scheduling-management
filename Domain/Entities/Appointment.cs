@@ -22,7 +22,7 @@ public class Appointment : TenantEntity
     public Client Client { get; private set; }= null!;
     public Establishment Establishment { get; set; } = null!;
 
-    public Appointment(Guid establishmentId, Guid professionalId, Guid serviceId, Guid clientId, DateOnly schedulingDateOnly, TimeOnly startHours, TimeOnly endHours, int totalClients)
+    public Appointment(Guid establishmentId, Guid professionalId, Guid serviceId, Guid clientId, DateOnly schedulingDateOnly, TimeOnly startHours, TimeOnly endHours)
     {
         EstablishmentId = establishmentId;
         ProfessionalId = professionalId;
@@ -31,7 +31,6 @@ public class Appointment : TenantEntity
         SchedulingDateOnly = schedulingDateOnly;
         StartHours = startHours;
         EndHours = endHours;
-        TotalClients = totalClients;
     }
 
     public void Reschedule(DateOnly schedulingDateOnly, TimeOnly startHours, TimeOnly endHours)

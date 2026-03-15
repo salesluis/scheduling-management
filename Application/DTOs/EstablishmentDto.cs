@@ -4,7 +4,7 @@ public record CreateEstablishmentDto(string Name);
 
 public record UpdateEstablishmentDto(string Name);
 
-public record EstablishmentDto(
+public record RespondeEstablishmentDto(
     Guid Id,
     string Name,
     string Slug,

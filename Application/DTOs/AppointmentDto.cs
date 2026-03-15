@@ -1,3 +1,5 @@
+using SchedulingManagement.Enums;
+
 namespace scheduling_management.Application.DTOs;
 
 public record CreateAppointmentDto(
@@ -7,16 +9,15 @@ public record CreateAppointmentDto(
     Guid ClientId,
     DateOnly SchedulingDateOnly,
     TimeOnly StartHours,
-    TimeOnly EndHours,
-    int TotalClients);
+    TimeOnly EndHours);
 
 public record UpdateAppointmentDto(
+    Guid Id,
     DateOnly SchedulingDateOnly,
     TimeOnly StartHours,
-    TimeOnly EndHours,
-    int TotalClients);
+    TimeOnly EndHours);
 
-public record AppointmentDto(
+public record ResponseAppointmentDto(
     Guid Id,
     Guid EstablishmentId,
     Guid ProfessionalId,
@@ -25,7 +26,4 @@ public record AppointmentDto(
     DateOnly SchedulingDateOnly,
     TimeOnly StartHours,
     TimeOnly EndHours,
-    int Status,
-    int TotalClients,
-    DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc);
+    EAppointmentStatus Status);

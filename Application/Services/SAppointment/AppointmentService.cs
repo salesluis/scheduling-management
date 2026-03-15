@@ -1,8 +1,9 @@
 using scheduling_management.Application.DTOs;
+using scheduling_management.Domain.Contracts;
 using scheduling_management.Domain.Entities;
 using scheduling_management.Infrastructure.Repositories;
 
-namespace scheduling_management.Application.Services.Appointment;
+namespace scheduling_management.Application.Services.SAppointment;
 
 public class AppointmentService : IAppointmentService
 {
@@ -13,7 +14,7 @@ public class AppointmentService : IAppointmentService
         _repository = repository;
     }
 
-    public async Task<AppointmentDto> CreateAsync(CreateAppointmentDto request, CancellationToken cancellationToken = default)
+    public async Task<ResponseAppointmentDto> CreateAsync(CreateAppointmentDto request, CancellationToken cancellationToken = default)
     {
         var entity = new Appointment(
             request.EstablishmentId,
@@ -22,15 +23,15 @@ public class AppointmentService : IAppointmentService
             request.ClientId,
             request.SchedulingDateOnly,
             request.StartHours,
-            request.EndHours,
-            request.TotalClients);
+            request.EndHours);
+        
         var created = await _repository.CreateAsync(entity, cancellationToken);
-        return MapToDto(created);
+        return MapToResponse(created);
     }
 
-    public async Task<bool> UpdateAsync(Guid id, UpdateAppointmentDto request, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateAsync( UpdateAppointmentDto request, CancellationToken cancellationToken = default)
     {
-        var entity = await _repository.GetByIdForUpdateAsync(id, cancellationToken);
+        var entity = await _repository.GetByIdForUpdateAsync(request.Id, cancellationToken);
         if (entity == null) return false;
         entity.Reschedule(request.SchedulingDateOnly, request.StartHours, request.EndHours);
         entity.SetTotalClients(request.TotalClients);
@@ -46,32 +47,32 @@ public class AppointmentService : IAppointmentService
         return true;
     }
 
-    public async Task<AppointmentDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<ResponseAppointmentDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await _repository.GetByIdAsync(id, cancellationToken);
         return entity == null ? null : MapToDto(entity);
     }
 
-    public async Task<PagedResponse<AppointmentDto>> ListAsync(int page, int pageSize, Guid? establishmentId = null, Guid? professionalId = null, Guid? clientId = null, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
+    public async Task<PagedResponse<ResponseAppointmentDto>> ListAsync(int page, int pageSize, Guid? establishmentId = null, Guid? professionalId = null, Guid? clientId = null, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
     {
         var paged = await _repository.GetPagedAsync(page, pageSize, establishmentId, professionalId, clientId, fromDate, toDate, cancellationToken);
         var items = paged.Items.Select(MapToDto).ToList();
-        return new PagedResponse<AppointmentDto>(items, page, pageSize, paged.TotalCount);
+        return new PagedResponse<ResponseAppointmentDto>(items, page, pageSize, paged.TotalCount);
     }
 
-    public async Task<IReadOnlyList<AppointmentDto>> SearchAsync(Guid? establishmentId, Guid? professionalId, Guid? clientId, DateOnly? fromDate, DateOnly? toDate, int? status, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<ResponseAppointmentDto>> SearchAsync(Guid? establishmentId, Guid? professionalId, Guid? clientId, DateOnly? fromDate, DateOnly? toDate, int? status, CancellationToken cancellationToken = default)
     {
         var items = await _repository.SearchAsync(establishmentId, professionalId, clientId, fromDate, toDate, status, cancellationToken);
         return items.Select(MapToDto).ToList();
     }
 
-    public async Task<IReadOnlyList<AppointmentDto>> ListByClientAsync(Guid clientId, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<ResponseAppointmentDto>> ListByClientAsync(Guid clientId, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
     {
         var items = await _repository.GetByClientIdAsync(clientId, fromDate, toDate, cancellationToken);
         return items.Select(MapToDto).ToList();
     }
 
-    public async Task<IReadOnlyList<AppointmentDto>> ListByProfessionalAsync(Guid professionalId, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<ResponseAppointmentDto>> ListByProfessionalAsync(Guid professionalId, DateOnly? fromDate = null, DateOnly? toDate = null, CancellationToken cancellationToken = default)
     {
         var items = await _repository.GetByProfessionalIdAsync(professionalId, fromDate, toDate, cancellationToken);
         return items.Select(MapToDto).ToList();
@@ -95,7 +96,7 @@ public class AppointmentService : IAppointmentService
         return true;
     }
 
-    private static AppointmentDto MapToDto(Appointment a) => new(
+    private static ResponseAppointmentDto MapToResponse(Appointment a) => new ResponseAppointmentDto(
         a.Id,
         a.EstablishmentId,
         a.ProfessionalId,
@@ -104,8 +105,5 @@ public class AppointmentService : IAppointmentService
         a.SchedulingDateOnly,
         a.StartHours,
         a.EndHours,
-        (int)a.Status,
-        a.TotalClients,
-        a.CreatedAtUtc,
-        a.UpdatedAtUtc);
+        a.Status);
 }
