@@ -11,12 +11,18 @@ public class Client : TenantEntity
 
     public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
 
-    public Client(Guid establishmentId, string name, string? phoneNumber = null, Guid? userId = null)
+    public Client(Guid establishmentId, string name, string? phoneNumber = null)
     {
         EstablishmentId = establishmentId;
         Name = name;
         PhoneNumber = phoneNumber;
-        UserId = userId;
+    }
+
+    public void Update(string name, string? phoneNumber)
+    {
+        Name = name;
+        PhoneNumber = phoneNumber;
+        Touch();
     }
 }
 

@@ -15,5 +15,12 @@ public class ProfessionalService : TenantEntity
         ProfessionalId = professionalId;
         ServiceId = serviceId;
     }
+
+    public void Update(Guid professionalId, Guid serviceId)
+    {
+        ProfessionalId = professionalId;
+        ServiceId = serviceId;
+        Touch();
+    }
 }
 

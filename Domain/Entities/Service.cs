@@ -18,13 +18,38 @@ public class Service : TenantEntity
     public List<ProfessionalService> ProfessionalServices { get; private set; } = new();
     public List<Appointment> Appointments { get; private set; } = new();
 
-    public Service() { }    
-    public Service(Guid establishmentId, string name, int durationInMinutes, int price)
+    public Service() { }
+
+    public Service(Guid establishmentId, string name, int durationInMinutes, int price, string? color = null, string? description = null)
     {
         EstablishmentId = establishmentId;
         Name = name;
         DurationInMinutes = durationInMinutes;
         PriceInReal = price;
+        Color = color ?? string.Empty;
+        Description = description ?? string.Empty;
+    }
+
+    public void Update(string name, int durationInMinutes, int priceInReal, string? color = null, string? description = null)
+    {
+        Name = name;
+        DurationInMinutes = durationInMinutes;
+        PriceInReal = priceInReal;
+        Color = color ?? string.Empty;
+        Description = description ?? string.Empty;
+        Touch();
+    }
+
+    public void Activate()
+    {
+        IsActive = true;
+        Touch();
+    }
+
+    public void Deactivate()
+    {
+        IsActive = false;
+        Touch();
     }
 }
 

@@ -21,5 +21,23 @@ public class Professional : TenantEntity
         UserId = userId;
         DisplayName = displayName;
     }
+
+    public void SetDisplayName(string displayName)
+    {
+        DisplayName = displayName;
+        Touch();
+    }
+
+    public void Activate()
+    {
+        IsActive = true;
+        Touch();
+    }
+
+    public void Deactivate()
+    {
+        IsActive = false;
+        Touch();
+    }
 }
 

@@ -14,5 +14,13 @@ public class User : BaseEntity
         Email = email;
         PhoneNumber = phoneNumber;
     }
+
+    public void Update(string name, string email, string? phoneNumber = null)
+    {
+        Name = name;
+        Email = email;
+        PhoneNumber = phoneNumber;
+        Touch();
+    }
 }
 

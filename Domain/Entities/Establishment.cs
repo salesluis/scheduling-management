@@ -22,5 +22,24 @@ public class Establishment : BaseEntity
             .Replace(" ", "-")
             .ToLower();
     }
+
+    public void UpdateName(string name)
+    {
+        Name = name;
+        Slug = name.Replace(" ", "-").ToLower();
+        Touch();
+    }
+
+    public void Activate()
+    {
+        IsActive = true;
+        Touch();
+    }
+
+    public void Deactivate()
+    {
+        IsActive = false;
+        Touch();
+    }
 }
 
