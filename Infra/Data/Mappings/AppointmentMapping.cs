@@ -47,12 +47,6 @@ public class AppointmentMapping : IEntityTypeConfiguration<Appointment>
             .HasColumnName("SchedulingDateOnly")
             .HasColumnType("date");
 
-        builder.Property(a => a.TotalClients)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasColumnName("TotalClients")
-            .HasColumnType("int");
-
         builder.Property(a => a.Status)
             .IsRequired()
             .HasColumnName("Status")

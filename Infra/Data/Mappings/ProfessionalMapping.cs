@@ -40,6 +40,12 @@ public class ProfessionalMapping : IEntityTypeConfiguration<Professional>
             .IsRequired()
             .HasColumnName("CreatedAtUtc")
             .HasColumnType("datetime2");
+        
+        builder.Property(a => a.TotalClients)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasColumnName("TotalClients")
+            .HasColumnType("int");
 
         builder.Property(p => p.UpdatedAtUtc)
             .HasColumnName("UpdatedAtUtc")

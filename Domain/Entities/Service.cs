@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using scheduling_management.Domain.Abstractions;
+using scheduling_management.Domain.Contracts;
 
 namespace scheduling_management.Domain.Entities;
 public class Service : TenantEntity

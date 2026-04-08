@@ -1,4 +1,4 @@
-namespace SchedulingManagement.Enums;
+namespace scheduling_management.Domain.Enums;
 
 public enum EAppointmentStatus
 {

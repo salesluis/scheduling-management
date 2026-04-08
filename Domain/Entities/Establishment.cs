@@ -1,27 +1,21 @@
 using System.Collections.Generic;
-using scheduling_management.Domain.Abstractions;
+using scheduling_management.Domain.Contracts;
 
 namespace scheduling_management.Domain.Entities;
 
-public class Establishment : BaseEntity
+public class Establishment(string name) : BaseEntity
 {
-    public string Name { get; private set; } 
-    public string Slug { get; private set; }
+    public string Name { get; private set; } = name;
+    public string Slug { get; private set; } = name
+        .Replace(" ", "-")
+        .ToLower();
+
     public bool IsActive { get; private set; } = true;
 
-    public ICollection<Service> Services { get; private set; } = new List<Service>();
-    public ICollection<Professional> Professionals { get; private set; } = new List<Professional>();
-    public ICollection<Client> Clients { get; private set; } = new List<Client>();
-    public ICollection<Appointment> Appointments { get; private set; } = new List<Appointment>();
-    
-
-    public Establishment(string name)
-    {
-        Name = name;
-        Slug = name
-            .Replace(" ", "-")
-            .ToLower();
-    }
+    public List<Service> Services { get; private set; } = new();
+    public List<Professional> Professionals { get; private set; } = new();
+    public List<Client> Clients { get; private set; } = new();
+    public List<Appointment> Appointments { get; private set; } = new();
 
     public void UpdateName(string name)
     {

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace scheduling_management.Application.DTOs;
 
 public record PagedResponse<T>(

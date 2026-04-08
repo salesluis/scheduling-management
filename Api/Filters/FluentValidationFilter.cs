@@ -2,7 +2,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace scheduling_management.Http.Filters;
+namespace scheduling_management.Api.Filters;
 
 /// <summary>
 /// Filtro que executa FluentValidation sobre o modelo da requisição quando existe validator registrado.

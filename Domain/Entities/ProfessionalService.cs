@@ -1,5 +1,5 @@
 using System;
-using scheduling_management.Domain.Abstractions;
+using scheduling_management.Domain.Contracts;
 
 namespace scheduling_management.Domain.Entities;
 public class ProfessionalService : TenantEntity

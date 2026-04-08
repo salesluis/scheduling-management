@@ -1,3 +1,5 @@
+using System;
+
 namespace scheduling_management.Application.DTOs;
 
 public record CreateUserDto(
@@ -10,10 +12,7 @@ public record UpdateUserDto(
     string Email,
     string? PhoneNumber = null);
 
-public record UserDto(
+public record UserResponseDto(
     Guid Id,
     string Name,
-    string Email,
-    string? PhoneNumber,
-    DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc);
+    string Email);

@@ -5,7 +5,7 @@ namespace scheduling_management.Domain.Builders;
 
 public class AppointmentBuilder
 {
-    private readonly Appointment _appointment;
+    private readonly Appointment _appointment = new();
 
     public AppointmentBuilder WithEstabilishmentId(Guid estabilishmentId)
     {
@@ -34,6 +34,7 @@ public class AppointmentBuilder
     public AppointmentBuilder WithSchedulingDateOnly(DateOnly date)
     {
         _appointment.SchedulingDateOnly = date;
+        _appointment.DayOfWeeek = date.DayOfWeek;
         return this;
     }
 

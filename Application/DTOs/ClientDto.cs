@@ -1,23 +1,21 @@
+using System;
+
 namespace scheduling_management.Application.DTOs;
 
 /// <summary>Payload para criação de cliente.</summary>
 public record CreateClientDto(
     Guid EstablishmentId,
     string Name,
-    string? PhoneNumber = null,
-    Guid? UserId = null);
+    string PhoneNumber);
 
 /// <summary>Payload para atualização de cliente (id vem da rota).</summary>
 public record UpdateClientDto(
     string Name,
-    string? PhoneNumber = null);
+    string PhoneNumber);
 
-/// <summary>Cliente retornado na API (get/list/search).</summary>
-public record ResponseClientDto(
+public record ClienResponsetDto(
     Guid Id,
     Guid EstablishmentId,
     Guid? UserId,
     string Name,
-    string? PhoneNumber,
-    DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc);
+    string PhoneNumber);

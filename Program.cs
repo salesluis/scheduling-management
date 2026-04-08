@@ -1,40 +1,18 @@
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using scheduling_management.Application.Services;
-using scheduling_management.Application.Services.SAppointment;
-using scheduling_management.Domain.Contracts;
-using scheduling_management.Http.Filters;
-using scheduling_management.Infra.Data;
-using scheduling_management.Infra.Repositories;
-using scheduling_management.Infrastructure.Repositories;
+using scheduling_management.Api.Routes;
+using scheduling_management.Application.Extensions;
+using scheduling_management.Infra.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(o => o.Filters.Add<FluentValidationFilter>());
+builder.Services.AddUseCase();
 
-var cnt = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<SchedulingManagementDbContext>(o => o.UseSqlServer(cnt));
-
-// Repositories
-builder.Services.AddScoped<IEstablishmentRepository, EstablishmentRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
-builder.Services.AddScoped<IProfessionalRepository, ProfessionalRepository>();
-builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-builder.Services.AddScoped<IProfessionalServiceRepository, ProfessionalServiceRepository>();
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-
-// Services
-builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-builder.Services.AddScoped<IClientService, ClientService>();
-builder.Services.AddScoped<IEstablishmentService, EstablishmentService>();
-builder.Services.AddScoped<IProfessionalService, ProfessionalServiceHandle>();
-builder.Services.AddScoped<IServiceCatalogService, ServiceCatalogService>();
-builder.Services.AddScoped<IProfessionalServiceLinkService, ProfessionalServiceLinkService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddRepositories();
+builder.Services.AddUnitOfWork();
+builder.Services.AddDb(builder.Configuration);
+builder.Services.AddUseCase();
 
 var app = builder.Build();
 
-app.MapControllers();
+app.MapClientRoute();
 
 app.Run();

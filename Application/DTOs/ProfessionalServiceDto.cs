@@ -1,3 +1,5 @@
+using System;
+
 namespace scheduling_management.Application.DTOs;
 
 public record CreateProfessionalServiceDto(
@@ -9,7 +11,7 @@ public record UpdateProfessionalServiceDto(
     Guid ProfessionalId,
     Guid ServiceId);
 
-public record ProfessionalServiceDto(
+public record ResponseProfessionalServiceDto(
     Guid Id,
     Guid EstablishmentId,
     Guid ProfessionalId,

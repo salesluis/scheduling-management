@@ -1,3 +1,5 @@
+using System;
+
 namespace scheduling_management.Application.DTOs;
 
 public record CreateServiceDto(
@@ -15,7 +17,7 @@ public record UpdateServiceDto(
     string? Color = null,
     string? Description = null);
 
-public record ServiceDto(
+public record ServiceResponseDto(
     Guid Id,
     Guid EstablishmentId,
     string Name,
@@ -23,6 +25,4 @@ public record ServiceDto(
     int PriceInReal,
     bool IsActive,
     string Color,
-    string Description,
-    DateTime CreatedAtUtc,
-    DateTime UpdatedAtUtc);
+    string Description);
