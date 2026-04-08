@@ -6,10 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddUseCase();
 
-builder.Services.AddRepositories();
-builder.Services.AddUnitOfWork();
-builder.Services.AddDb(builder.Configuration);
-builder.Services.AddUseCase();
+builder
+    .Services
+    .AddRepositories()
+    .AddUnitOfWork()
+    .AddDb(builder.Configuration);
+
+builder
+    .Services
+    .AddUseCase();
 
 var app = builder.Build();
 

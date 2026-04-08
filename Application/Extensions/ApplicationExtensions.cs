@@ -10,7 +10,7 @@ namespace scheduling_management.Application.Extensions;
 
 public static class ApplicationExtensions
 {
-    public static void AddUseCase(this IServiceCollection services) 
+    public static IServiceCollection AddUseCase(this IServiceCollection services) 
     {
         services.AddScoped<IEstablishmentUseCase, EstablishmentUseCase>();
         services.AddScoped<IAppointmentUseCase, AppointmentUseCase>();
@@ -19,5 +19,7 @@ public static class ApplicationExtensions
         services.AddScoped<IServiceUseCase, ServiceUseCase>();
         services.AddScoped<IProfessionalLinkUseCase, ProfessionalLinkUseCase>();
         services.AddScoped<IUserUseCase, UserUseCase>();
+
+        return services;
     }
 }
