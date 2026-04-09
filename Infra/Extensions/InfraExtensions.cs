@@ -15,6 +15,7 @@ public static class InfraExtensions
         services.AddScoped<IClientRepository, ClientRepository>();
         services.AddScoped<IProfessionalRepository, ProfessionalRepository>();
         services.AddScoped<IServiceRepository, ServiceRepository>();
+        services.AddScoped<IProfessionalServiceRepository, ProfessionalServiceRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         
     }
@@ -27,6 +28,7 @@ public static class InfraExtensions
     public static void AddDb(this IServiceCollection services, IConfiguration configuration)
     {
         var cnt =  configuration.GetConnectionString("DefaultConnection");
+        Console.WriteLine($"[DEBUG] ConnectionString: {cnt}"); // TODO: remover
         services.AddDbContext<SchedulingManagementDbContext>(o =>
             o.UseSqlServer(cnt));
     }
