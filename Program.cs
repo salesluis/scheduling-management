@@ -4,15 +4,18 @@ using scheduling_management.Infra.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddUseCase();
-
-builder.Services.AddRepositories();
 builder.Services.AddUnitOfWork();
-builder.Services.AddDb(builder.Configuration);
+builder.Services.AddRepositories();
 builder.Services.AddUseCase();
+builder.Services.AddDb(builder.Configuration);
 
 var app = builder.Build();
 
+app.MapEstablishmentRoute();
 app.MapClientRoute();
+app.MapServiceRoute();
+app.MapProfessionalRoute();
+app.MapProfessionalServiceRoute();
+app.MapAppointmentRoute();
 
 app.Run();

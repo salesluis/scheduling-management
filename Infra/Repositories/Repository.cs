@@ -14,14 +14,18 @@ public abstract class Repository<T>(DbContext context) :
 {
     public async Task<List<T>> GetAllAsync(Guid establishmentId, CancellationToken ct)
     {
-        // todo: implementar a busca pelo id do estabelecimento
-        // trazendo um predicate?
-        var entities = await context
+        IQueryable<T> query = context
             .Set<T>()
-            .AsNoTracking()
-            .ToListAsync(ct);
-        
-        return entities;
+            .AsNoTracking();
+
+        // If this entity is tenant-scoped, enforce tenant filter when provided.
+        if (establishmentId != Guid.Empty && typeof(TenantEntity).IsAssignableFrom(typeof(T)))
+        {
+            query = query.Where(e =>
+                EF.Property<Guid>(e, nameof(TenantEntity.EstablishmentId)) == establishmentId);
+        }
+
+        return await query.ToListAsync(ct);
     }
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken ct)
