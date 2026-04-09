@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using scheduling_management.Application.Common;
 using scheduling_management.Application.DTOs;
 using scheduling_management.Domain.Builders;
 
@@ -7,7 +8,7 @@ namespace scheduling_management.Application.UseCases.Appointment;
 
 public partial class AppointmentUseCase
 {
-    public async Task<ResponseAppointmentDto> CreateAsync(CreateAppointmentDto request, CancellationToken cancellationToken = default)
+    public async Task<Result<ResponseAppointmentDto>> CreateAsync(CreateAppointmentDto request, CancellationToken cancellationToken = default)
     {
         var entity = new AppointmentBuilder()
             .WithEstabilishmentId(request.EstablishmentId)
@@ -21,6 +22,6 @@ public partial class AppointmentUseCase
         
         var created = await repository.CreateAsync(entity, cancellationToken);
         await unitOfWork.CommitAsync();
-        return MapToResponse(created);
+        return Result<ResponseAppointmentDto>.Ok(MapToResponse(created));
     }
 }
