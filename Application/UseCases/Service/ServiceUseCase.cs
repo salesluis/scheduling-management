@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using scheduling_management.Application.Common;
 using scheduling_management.Application.DTOs;
 using scheduling_management.Domain.Contracts;
 using scheduling_management.Domain.Contracts.Repositories;
@@ -14,24 +15,28 @@ public partial class ServiceUseCase(IServiceRepository repository, IUnitOfWork u
 {
     //todo: ao invés de ter dois useCases que ativa e desativa, verificar possibilidade de ter apenas um método
     // Ex: ToggleActivate 
-    public async Task<bool> ActivateAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Result<Unit>> ActivateAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await repository.GetByIdAsync(id, cancellationToken);
-        if (entity == null) return false;
+        if (entity == null)
+            return Result<Unit>.Fail("NOT_FOUND", "Service not found.", ResultErrorType.NotFound);
+
         entity.Activate();
         repository.UpdateAsync(entity, cancellationToken);
         await unitOfWork.CommitAsync();
-        return true;
+        return Result<Unit>.Ok(Unit.Value);
     }
 
-    public async Task<bool> DeactivateAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Result<Unit>> DeactivateAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await repository.GetByIdAsync(id, cancellationToken);
-        if (entity == null) return false;
+        if (entity == null)
+            return Result<Unit>.Fail("NOT_FOUND", "Service not found.", ResultErrorType.NotFound);
+
         entity.Deactivate();
         repository.UpdateAsync(entity, cancellationToken);
         await unitOfWork.CommitAsync();
-        return true;
+        return Result<Unit>.Ok(Unit.Value);
     }
 
     private static ServiceResponseDto MapToDto(Domain.Entities.Service s) => new(
