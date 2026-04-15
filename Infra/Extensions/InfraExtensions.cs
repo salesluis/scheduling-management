@@ -8,7 +8,7 @@ namespace scheduling_management.Infra.Extensions;
 
 public static class InfraExtensions
 {
-    public static void AddRepositories(this IServiceCollection services)
+    public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IEstablishmentRepository, EstablishmentRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
@@ -18,18 +18,23 @@ public static class InfraExtensions
         services.AddScoped<IProfessionalServiceRepository, ProfessionalServiceRepository>();
         services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         
+        return services;
     }
 
-    public static void AddUnitOfWork(this IServiceCollection services)
+    public static IServiceCollection AddUnitOfWork(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        return services;
+        
     }
 
-    public static void AddDb(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDb(this IServiceCollection services, IConfiguration configuration)
     {
         var cnt =  configuration.GetConnectionString("DefaultConnection");
         Console.WriteLine($"[DEBUG] ConnectionString: {cnt}"); // TODO: remover
         services.AddDbContext<SchedulingManagementDbContext>(o =>
             o.UseSqlServer(cnt));
+        return services;
+        
     }
 }
