@@ -9,7 +9,7 @@ using scheduling_management.Domain.Contracts.Repositories;
 
 namespace scheduling_management.Application.UseCases.Establishment;
 
-public abstract partial class EstablishmentUseCase(IEstablishmentRepository repository, IUnitOfWork unitOfWork)
+public partial class EstablishmentUseCase(IEstablishmentRepository repository, IUnitOfWork unitOfWork)
     : IEstablishmentUseCase
 {
     public async Task<bool> ActivateAsync(Guid id, CancellationToken cancellationToken = default)
