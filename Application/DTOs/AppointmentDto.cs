@@ -18,6 +18,12 @@ public record UpdateAppointmentDto(
     TimeOnly StartHours,
     TimeOnly EndHours);
 
+public record RequestAppointmentDto(
+    Guid Id,
+    DateOnly SchedulingDateOnly,
+    TimeOnly StartHours,
+    TimeOnly EndHours);
+
 public record ResponseAppointmentDto(
     Guid Id,
     Guid EstablishmentId,

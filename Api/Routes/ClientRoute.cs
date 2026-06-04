@@ -14,7 +14,7 @@ public static class ClientRoute
         {
             var result = await clientUseCase.GetByIdAsync(id, ct);
             if (result.Success && result.Value!.EstablishmentId != establishmentId)
-                return Result<ClienResponsetDto>.Fail("NOT_FOUND", "Client not found.", ResultErrorType.NotFound).ToActionResult();
+                return Result<ClientResponseDto>.Fail("NOT_FOUND", "Client not found.", ResultErrorType.NotFound).ToActionResult();
 
             return result.ToActionResult();
         });

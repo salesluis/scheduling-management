@@ -8,11 +8,11 @@ namespace scheduling_management.Application.UseCases.Client;
 
 public partial class ClientUseCase
 {
-    public async Task<Result<ClienResponsetDto>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<Result<ClientResponseDto>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await repository.GetByIdAsync(id, cancellationToken);
         return entity == null
-            ? Result<ClienResponsetDto>.Fail("NOT_FOUND", "Client not found.", ResultErrorType.NotFound)
-            : Result<ClienResponsetDto>.Ok(MapToDto(entity));
+            ? Result<ClientResponseDto>.Fail("NOT_FOUND", "Client not found.", ResultErrorType.NotFound)
+            : Result<ClientResponseDto>.Ok(MapToDto(entity));
     }
 }

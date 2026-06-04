@@ -13,7 +13,11 @@ public record UpdateClientDto(
     string Name,
     string PhoneNumber);
 
-public record ClienResponsetDto(
+public record RequestClientDto(
+    string Name,
+    string PhoneNumber);
+
+public record ClientResponseDto(
     Guid Id,
     Guid EstablishmentId,
     Guid? UserId,

@@ -14,7 +14,7 @@ public partial class ClientUseCase(
     IUnitOfWork unitOfWork)
     : IClientUseCase
 {
-    private static ClienResponsetDto MapToDto(Domain.Entities.Client c) => new(
+    private static ClientResponseDto MapToDto(Domain.Entities.Client c) => new(
         c.Id,
         c.EstablishmentId,
         c.UserId,

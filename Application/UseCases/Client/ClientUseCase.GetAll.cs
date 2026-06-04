@@ -10,9 +10,9 @@ namespace scheduling_management.Application.UseCases.Client;
 
 public partial class ClientUseCase
 {
-    public async Task<Result<List<ClienResponsetDto>>> GetAllAsync(Guid? establishmentId, CancellationToken cancellationToken = default)
+    public async Task<Result<List<ClientResponseDto>>> GetAllAsync(Guid? establishmentId, CancellationToken cancellationToken = default)
     {
         var items = await repository.GetAllAsync(establishmentId ?? Guid.Empty, cancellationToken);
-        return Result<List<ClienResponsetDto>>.Ok(items.Select(MapToDto).ToList());
+        return Result<List<ClientResponseDto>>.Ok(items.Select(MapToDto).ToList());
     }
 }

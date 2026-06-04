@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using scheduling_management.Application.Common;
 using scheduling_management.Application.UseCases.Establishment;
 using scheduling_management.Application.DTOs;
@@ -16,13 +17,18 @@ public static class EstablishmentRoute
             return result.ToActionResult();
         });
 
-        g.MapGet("", async (IEstablishmentUseCase useCase, CancellationToken ct) =>
+        g.MapGet("", async (
+            CancellationToken ct,
+            [FromServices] IEstablishmentUseCase useCase) =>
         {
             var result = await useCase.GetAllAsync(Guid.Empty, ct);
             return result.ToActionResult();
         });
 
-        g.MapGet("{id:guid}", async (Guid id, IEstablishmentUseCase useCase, CancellationToken ct) =>
+        g.MapGet("{id:guid}", async (
+            Guid id,
+            CancellationToken ct,
+            [FromServices] IEstablishmentUseCase useCase) =>
         {
             var result = await useCase.GetByIdAsync(id, ct);
             return result.ToActionResult();
