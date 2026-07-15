@@ -1,4 +1,4 @@
-using scheduling_management.Domain.Contracts;
+using scheduling_management.Domain.Entity.Abstractions;
 
 namespace scheduling_management.Domain.Entities;
 

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace scheduling_management.Domain.Contracts;
+namespace scheduling_management.Domain.UnitOfWork.Abstractions;
 
 public interface IUnitOfWork
 {

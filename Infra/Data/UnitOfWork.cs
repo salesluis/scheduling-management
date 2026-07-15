@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using scheduling_management.Domain.Contracts;
+using scheduling_management.Domain.UnitOfWork.Abstractions;
 
 namespace scheduling_management.Infra.Data;
 

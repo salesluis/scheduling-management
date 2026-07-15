@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using scheduling_management.Domain.Contracts;
-using scheduling_management.Domain.Contracts.Repositories;
+using scheduling_management.Domain.UnitOfWork.Abstractions;
+using scheduling_management.Domain.Repository.Abstractions;
 using scheduling_management.Infra.Data;
 using scheduling_management.Infra.Repositories;
 
