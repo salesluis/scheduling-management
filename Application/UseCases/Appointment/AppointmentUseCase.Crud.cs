@@ -35,9 +35,13 @@ public partial class AppointmentUseCase
         return true;
     }
 
-    public Task<List<ResponseAppointmentDto>> GetAllAsync(Guid establishmentId, CancellationToken cancellationToken = default)
+    public async Task<List<ResponseAppointmentDto>> GetAllAsync(Guid establishmentId, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var entities = await repository.GetAllAsync(establishmentId, cancellationToken);
+        
+        return entities
+            .Select(MapToResponse)
+            .ToList();
     }
 
     public async Task<ResponseAppointmentDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
