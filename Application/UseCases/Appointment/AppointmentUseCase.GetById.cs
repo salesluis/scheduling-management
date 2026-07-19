@@ -1,9 +1,5 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using scheduling_management.Application.Common;
 using scheduling_management.Application.DTOs;
-using scheduling_management.Domain.Builders;
 
 namespace scheduling_management.Application.UseCases.Appointment;
 

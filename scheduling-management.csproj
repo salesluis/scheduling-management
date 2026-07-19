@@ -21,4 +21,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\UnitOfWork\Abstractions\" />
+  </ItemGroup>
+
 </Project>

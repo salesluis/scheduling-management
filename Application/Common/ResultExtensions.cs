@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-
 namespace scheduling_management.Application.Common;
 
 public static class ResultExtensions

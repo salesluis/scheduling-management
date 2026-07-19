@@ -1,4 +1,3 @@
-using System.Linq;
 using scheduling_management.Application.DTOs;
 using scheduling_management.Application.Common;
 using scheduling_management.Application.UseCases.Appointment;

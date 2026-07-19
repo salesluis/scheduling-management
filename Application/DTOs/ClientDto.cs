@@ -1,5 +1,3 @@
-using System;
-
 namespace scheduling_management.Application.DTOs;
 
 /// <summary>Payload para criação de cliente.</summary>

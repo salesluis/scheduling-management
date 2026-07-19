@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using scheduling_management.Application.Common;
 using scheduling_management.Application.DTOs;
 using scheduling_management.Domain.Contracts;
-using scheduling_management.Domain.Contracts.Repositories;
 using scheduling_management.Domain.Entities;
+using scheduling_management.Domain.Repository.Abstractions;
 
 namespace scheduling_management.Application.UseCases.ProfessionalServiceLink;
 

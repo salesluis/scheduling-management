@@ -1,5 +1,3 @@
-using System;
-
 namespace scheduling_management.Application.DTOs;
 
 public record CreateServiceDto(

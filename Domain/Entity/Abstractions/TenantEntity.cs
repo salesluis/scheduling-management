@@ -1,8 +1,6 @@
-using System;
-using scheduling_management.Domain.Contracts;
 using scheduling_management.Domain.Entities;
 
-namespace scheduling_management.Domain.Contracts;
+namespace scheduling_management.Domain.Entity.Abstractions;
 
 public abstract class TenantEntity : BaseEntity
 {

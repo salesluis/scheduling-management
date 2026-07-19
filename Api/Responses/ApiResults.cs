@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using scheduling_management.Application.Common;
 
 namespace scheduling_management.Api.Responses;

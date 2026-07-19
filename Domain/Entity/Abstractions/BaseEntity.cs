@@ -1,6 +1,4 @@
-using System;
-
-namespace scheduling_management.Domain.Contracts;
+namespace scheduling_management.Domain.Entity.Abstractions;
 
 public abstract class BaseEntity
 {

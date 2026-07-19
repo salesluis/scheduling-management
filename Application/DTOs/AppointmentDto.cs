@@ -1,4 +1,3 @@
-using System;
 using scheduling_management.Domain.Enums;
 
 namespace scheduling_management.Application.DTOs;
